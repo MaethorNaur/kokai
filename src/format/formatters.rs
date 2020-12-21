@@ -1,3 +1,3 @@
 pub trait Markdown {
-  fn markdown(&self) -> String;
+  fn markdown(&self, repo: &Option<String>) -> String;
 }

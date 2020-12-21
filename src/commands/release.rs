@@ -19,6 +19,8 @@ pub struct Release {
   /// Get the tag of the ref commit and use it as a release name. This is like `git describe --tags --exact-match`
   #[structopt(long = "tag-from-ref")]
   pub tag_from_ref: bool,
+  #[structopt(long = "url")]
+  pub url: Option<String>,
 }
 
 impl Release {
@@ -42,6 +44,7 @@ impl Release {
     crate::format::angular::print_conventional_commit_release(
       &mut stdout,
       &name,
+      &self.url,
       Some(git.get_commit_date(&self.r#ref)?),
       &commits,
       crate::format::FormatOptions { show_all: true },
